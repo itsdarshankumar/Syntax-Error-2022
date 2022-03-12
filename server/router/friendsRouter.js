@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const friendsController = require("../controllers/friendsController");
-const dashboardController = require("../controllers/dashboardController");
-const wishlistController = require("../controllers/wishlistController");
-const statusController=require("../controllers/statusController")
+const friendsController = require("../controller/friendsController");
+const dashboardController = require("../controller/dashboardController");
+const wishlistController = require("../controller/wishlistController");
+const statusController=require("../controller/statusController")
 
 router.post("../search", dashboardController.search);
 router.get("/", friendsController.friendsview);

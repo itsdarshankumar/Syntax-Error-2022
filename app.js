@@ -10,10 +10,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(cookie());
 
 const database = require("./database.js");
-const authRouter = require("./server/routers/authRouter.js");
-const friendsRouter = require("./server/routers/friendsRouter");
-const wishlistRouter = require("./server/routers/wishlistRouter");
-const statusRouter = require("./server/routers/statusRouter");
+const authRouter = require("./server/router/authRouter.js");
+const friendsRouter = require("./server/router/friendsRouter");
+const wishlistRouter = require("./server/router/wishlistRouter");
+const statusRouter = require("./server/router/statusRouter");
 
 /*app.use(
   session({
