@@ -26,8 +26,17 @@ app.use(
 
 const login = require("./server/router/login.js");
 const dashboard = require("./server/router/dashboard.js");
+const database = require("./database.js");
+const authRouter = require("./server/router/authRouter.js");
+const friendsRouter = require("./server/router/friendsRouter");
+const wishlistRouter = require("./server/router/wishlistRouter");
+const statusRouter = require("./server/router/statusRouter");
 app.use("/", login);
+app.use("/", authRouter);
 app.use("/dashboard", dashboard);
+app.use("/friends", friendsRouter);
+app.use("/wishlist", wishlistRouter);
+app.use("/transaction", statusRouter);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
