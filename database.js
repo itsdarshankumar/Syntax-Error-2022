@@ -8,7 +8,7 @@ var con = mysql.createPool({
   port: 3306,
   user: "root",
   database: "syntaxerror",
-  password: "Gurmannatsohal@2003",
+  password: process.env.PASSWORD,
 });
 
 con.getConnection((err, connection) => {

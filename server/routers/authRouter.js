@@ -10,7 +10,7 @@ passport.use(
       callbackURL: "/google/redirect",
       clientID:
         "491254375872-lpq8k42ilh12jggqmd4pd6r4sttpd6qm.apps.googleusercontent.com",
-      clientSecret: "",
+      clientSecret: process.env.CLIENT_SECRET,
     },
     (req, accessToken, refreshToken, profile, done) => {
       process.nextTick(function () {
@@ -29,7 +29,7 @@ passport.use(
                     ")",
                   function (err, result) {
                     if (err) throw err;
-                    console.log("Database updated");
+                    console.log("User database updated");
                   }
                 );
               } else {

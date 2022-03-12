@@ -10,7 +10,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(cookie());
 
 const database = require("./database.js");
-const authRouter = require("./server/router/authRouter.js");
+const authRouter = require("./server/routers/authRouter.js");
+const friendsRouter = require("./server/routers/friendsRouter");
+const wishlistRouter = require("./server/routers/wishlistRouter");
+const statusRouter = require("./server/routers/statusRouter");
 
 /*app.use(
   session({
@@ -35,6 +38,10 @@ app.get("/dashboard", (req, res) => {
   res.send("dashboard");
   //res.send('<a href="/logout">Log out</a>');
 });
+
+app.use("/dashboard/friends", friendsRouter);
+app.use("/dashboard/stock/wishlist", wishlistRouter);
+app.use("/dashboard/stock", statusRouter);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
