@@ -89,3 +89,14 @@ exports.signup = (req, res) => {
 exports.singupview = (req, res) => {
   res.write("welcome");
 };
+
+//logout
+exports.logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.redirect("/dashboard");
+    }
+    res.clearCookie(process.env.SESS_NAME);
+    res.redirect("/");
+  });
+};
