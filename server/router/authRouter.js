@@ -52,10 +52,6 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-// router.get("/logout", (req, res) => {
-//   req.logout();
-//   res.redirect("/");
-// });
 
 router.get(
   "/google",

@@ -1,5 +1,4 @@
 var express = require("express");
-var router = express.Router();
 var mysql = require("mysql");
 
 var con = mysql.createPool({
@@ -8,7 +7,7 @@ var con = mysql.createPool({
   port: 3306,
   user: "root",
   database: "syntaxerror",
-  password: process.env.PASSWORD,
+  password: process.env.PASS,
 });
 
 con.getConnection((err, connection) => {

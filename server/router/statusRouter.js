@@ -1,10 +1,6 @@
 const router = require("express").Router();
-const friendsController = require("../controller/friendsController");
-const dashboardController = require("../controller/dashboardController");
-const wishlistController = require("../controller/wishlistController");
-const statusController = require("../controller/statusController");
+const statusController = require("../controller/statusController.js");
 
-//router.get("/", stocksview.statusController)
 router.post("/buy", statusController.buystocks);
 router.post("/sell", statusController.sellstocks);
 

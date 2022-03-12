@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const con = require("../../database.js");
 
 exports.friendsview = (req, res) => {
   //render friends page

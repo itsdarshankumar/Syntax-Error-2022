@@ -1,9 +1,5 @@
 const router = require("express").Router();
-const con = require("../../database");
-const dashboardController = require("../controller/dashboardController");
-const friendsController = require("../controller/friendsController");
-const wishlistController = require("../controller/wishlistController");
-const statusController=require("../controller/statusController")
+const wishlistController = require("../controller/wishlistController.js");
 
 router.post("/", wishlistController.addWish);
 

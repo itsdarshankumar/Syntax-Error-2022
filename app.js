@@ -6,16 +6,12 @@ const session = require("express-session");
 const cookie = require("cookie-parser");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(__dirname + "/public"));
+
 app.use(cookie());
 
-const database = require("./database.js");
-const authRouter = require("./server/router/authRouter.js");
-const friendsRouter = require("./server/router/friendsRouter");
-const wishlistRouter = require("./server/router/wishlistRouter");
-const statusRouter = require("./server/router/statusRouter");
-
-/*app.use(
+app.use(
   session({
     name: process.env.SESS_NAME,
     resave: false,
@@ -26,22 +22,21 @@ const statusRouter = require("./server/router/statusRouter");
       maxAge: 1000 * 60 * 60 * 24, //1 day
     },
   })
-);*/
+);
 
-app.get("/", (req, res) => {
-  res.send('<a href="/google">OAuth with Google</a>');
-});
-
+const login = require("./server/router/login.js");
+const dashboard = require("./server/router/dashboard.js");
+const database = require("./database.js");
+const authRouter = require("./server/router/authRouter.js");
+const friendsRouter = require("./server/router/friendsRouter");
+const wishlistRouter = require("./server/router/wishlistRouter");
+const statusRouter = require("./server/router/statusRouter");
+app.use("/", login);
 app.use("/", authRouter);
-
-app.get("/dashboard", (req, res) => {
-  res.send("dashboard");
-  //res.send('<a href="/logout">Log out</a>');
-});
-
-app.use("/dashboard/friends", friendsRouter);
-app.use("/dashboard/stock/wishlist", wishlistRouter);
-app.use("/dashboard/stock", statusRouter);
+app.use("/dashboard", dashboard);
+app.use("/friends", friendsRouter);
+app.use("/wishlist", wishlistRouter);
+app.use("/transaction", statusRouter);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
