@@ -19,33 +19,54 @@ exports.search = (req, res) => {
   });
 };
 
+
+
 exports.stock = (req, res) => {
   const { company } = req.body;
-  let info = [];
+  let info = {};
 
-  finnhubClient.companyProfile2(
-    { symbol: `${company}` },
-    (error, data, response) => {
-      info.push(data);
-    }
-  );
-  //check date
-  finnhubClient.companyNews(
-    `${company}`,
-    "2022-03-11",
-    "2022-03-12",
-    (error, data, response) => {
-      companynews = data;
-      info.push(data);
-      console.log(info);
-    }
-  );
+  function companyprofile() {
+    finnhubClient.companyProfile2(
+      { symbol: `${company}` },
+      (error, data, response) => {
+        info["profile"] = data;
+        console.log("companyprofile");
+        companyquote();
+      }
+    );
+  }
+  function companyquote() {
+    finnhubClient.quote(`${company}`, (error, data, response) => {
+      info["quote"] = data;
+      companynews();
+    });
+  }
 
-  finnhubClient.quote(`${company}`, (error, data, response) => {
-    info.push(data);
-    console.log(data);
-  });
+  function companynews() {
+    finnhubClient.companyNews(
+      `${company}`,
+      "2022-03-11",
+      "2022-03-12",
+      (error, data, response) => {
+        info["news"] = data;
+        console.log("hi");
+        companyearning();
+      }
+    );
+  }
 
-  console.log(info);
-  res.json(info);
+  function companyearning() {
+    finnhubClient.companyEarnings(
+      `${company}`,
+      { limit: 5 },
+      (error, data, response) => {
+        info["earning"] = data;
+        console.log(info);
+        res.json(info)
+      }
+    );
+  }
+
+companyprofile()
+
 };
