@@ -99,9 +99,9 @@ exports.singupview = (req, res) => {
 exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.redirect("/dashboard");
+      return res.json({ status: false });
     }
     res.clearCookie(process.env.SESS_NAME);
-    res.redirect("/");
+    return res.json({ status: true });
   });
 };

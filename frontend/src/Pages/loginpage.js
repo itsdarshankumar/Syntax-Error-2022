@@ -21,7 +21,7 @@ export default function LoginPage() {
       reqpassword: pwd,
     }).then((res) => {
       if (res.data.status) {
-        navigate("/dashboard");
+        navigate(`/dashboard/${email}`);
       } else {
         navigate("/");
       }
@@ -58,15 +58,9 @@ export default function LoginPage() {
         >
           Log In
         </button>
-        <p>
-          Don't have an account?
-          <a
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            Create One
-          </a>
+        <p className="p">Don't have an account?</p>
+        <p className="a">
+          <a href="http://localhost:3000/signup">Create One</a>
         </p>
       </div>
     </div>

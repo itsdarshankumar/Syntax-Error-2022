@@ -42,3 +42,7 @@ exports.deleteWish = (req, res) => {
     }
   );
 };
+
+exports.viewWish = (req, res) => {
+  var sql = "SELECT stock FROM wishlist";
+};

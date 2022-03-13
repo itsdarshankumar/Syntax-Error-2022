@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const bcrypt = require("bcrypt");
 const db = require("../../database.js");
 const finnhub = require("finnhub");
+const res = require("express/lib/response");
 require("dotenv").config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,8 +18,6 @@ exports.search = (req, res) => {
     console.log(data);
   });
 };
-
-
 
 exports.stock = (req, res) => {
   const { company } = req.body;
@@ -62,11 +60,26 @@ exports.stock = (req, res) => {
       (error, data, response) => {
         info["earning"] = data;
         console.log(info);
-        res.json(info)
+        res.json(info);
       }
     );
   }
 
-companyprofile()
+  companyprofile();
+};
 
+exports.mystocks = () => {
+  const { email_id } = req.body;
+  db.query(
+    "SELECT * FROM stocks WHERE (email_id=" +
+      con.escape(email_id) +
+      ")"
+  ),
+    (err, rows) => {
+      if (rows[0] === undefined) {
+        res.JSON({ status: false });
+      } else {
+        res.send(rows);
+      }
+    };
 };

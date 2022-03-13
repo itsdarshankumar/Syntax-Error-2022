@@ -1,42 +1,52 @@
+body {
+  background-color: black;
+}
 
-.login{
-    display: flex;
-    flex-direction: row;
-    height:100% !important;
-    justify-content: space-between;
-    background-color: black;
-    
+.login {
+  display: flex;
+  flex-direction: row;
+  height: 100% !important;
+  justify-content: space-between;
+  background-color: black;
 }
 
 .login--left {
-   display: flex;
-   width: 65%;
-   height:fit-content;
-   
-  
+  display: flex;
+  width: 65%;
+  height: fit-content;
 }
-.login--right{
-    display: flex;
-    flex-direction: column;
-    width:35%;
-    height: 100 px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(128, 128, 128, 0.116);
+.login--right {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 200 px;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
 }
+
 img {
-    object-fit: cover;
-    width: 100%;
-    max-height: 100%;
-  }
-  
+  object-fit: cover;
+  width: 64%;
+  max-height: 100%;
+}
+
 .login--right > input {
-    border-radius: 5px;
-    
+  border-radius: 5px;
 }
 .login--right > button {
-    background-color: rgba(0, 0, 255, 0.692);
+  margin: 10px;
+  background-color: rgba(244, 244, 252, 0.692);
 }
+
 .login--title {
-       background-color: lightgreen;
+  color: white;
+}
+
+.p {
+  color: white;
+}
+
+.a {
+  color: silver;
 }
