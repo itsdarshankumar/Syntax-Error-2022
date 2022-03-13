@@ -1,0 +1,60 @@
+.dash {
+  display: flex;
+}
+
+.dash > button {
+  width: 2%;
+  height: auto;
+}
+.dash div {
+  border: 1px #ccc solid;
+}
+
+.dash--sec1 {
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #23242a;
+}
+
+.dash--sec2 {
+  margin: 50px 30px;
+}
+
+.dash--main {
+  color: white;
+  display: flex;
+  align-items: centre;
+}
+.dash--stocks {
+  color: white;
+  margin: 20px;
+}
+
+.dash--top {
+  height: 20%;
+  margin: 20px;
+  padding: 20px;
+}
+
+.dash--top > b {
+  color: white;
+}
+
+.dash--navbar {
+  display: flex;
+  width: 15%;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 20px;
+  margin: 20px;
+}
+
+.dash--bottom {
+  margin: 20px;
+}
+
+h3,
+h4 {
+  color: white;
+  padding: 20px;
+}

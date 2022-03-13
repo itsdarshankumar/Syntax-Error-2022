@@ -68,12 +68,11 @@ exports.stock = (req, res) => {
   companyprofile();
 };
 
-exports.mystocks = () => {
+exports.mystocks = (req,res) => {
+  console.log(req.body);
   const { email_id } = req.body;
   db.query(
-    "SELECT * FROM stocks WHERE (email_id=" +
-      con.escape(email_id) +
-      ")"
+    "SELECT * FROM stocks WHERE (email_id=" + db.escape(email_id) + ")"
   ),
     (err, rows) => {
       if (rows[0] === undefined) {

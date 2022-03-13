@@ -1,5 +1,5 @@
 import React from "react";
-/*import './dashboard.css'*/
+import "../components/css/dashboard.css";
 import Axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 const Eye = require("../components/img/eye.jpg");
@@ -29,9 +29,7 @@ export default function Dashboard() {
   const mystocks = () => {
     Axios.post("http://localhost:4000/dashboard", {
       email_id: email_id,
-    }).then((res) => {
-      console.log(res);
-    });
+    }).then((res) => {});
   };
   mystocks();
 
@@ -86,9 +84,9 @@ export default function Dashboard() {
         <b>$50000</b>
       </div>
       <section className="dash--main">
-        <section className="dash--stocks">
+        <div className="dash--stocks">
           <h4>Your Stocks</h4>
-        </section>
+        </div>
       </section>
       <div className="dash--bottom">
         <h4>News: </h4>
