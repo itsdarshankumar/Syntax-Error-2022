@@ -1,10 +1,12 @@
 const express = require("express");
 require("dotenv").config();
+const cors = require("cors");
 const app = express();
 const port = 4000;
 const session = require("express-session");
 const cookie = require("cookie-parser");
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/public"));
@@ -32,7 +34,7 @@ const friendsRouter = require("./server/router/friendsRouter");
 const wishlistRouter = require("./server/router/wishlistRouter");
 const statusRouter = require("./server/router/statusRouter");
 app.use("/", login);
-app.use("/", authRouter);
+app.use("/oauth", authRouter);
 app.use("/dashboard", dashboard);
 app.use("/friends", friendsRouter);
 app.use("/wishlist", wishlistRouter);

@@ -6,29 +6,34 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 exports.loginview = (req, res) => {
-  res.write("hello");
+  res.sendfile("login.html");
+};
+
+exports.signinview = (req, res) => {
+  res.sendfile("signin.html");
 };
 
 exports.login = (req, res) => {
   console.log("Login Attempted");
   console.log(req.body);
-  const { requsername, reqpassword } = req.body;
-  console.log(requsername);
+  const { reqemail, reqpassword } = req.body;
+  console.log(reqemail);
   db.query(
-    "SELECT * FROM user WHERE username=" + db.escape(requsername),
+    "SELECT * FROM user WHERE email_id=" + db.escape(reqemail),
     (err, rows) => {
       if (!err) {
         if (rows[0] === undefined) {
           res.send("User doesn't exist");
         } else {
+          console.log(rows[0]["password"]);
           const verified = bcrypt.compareSync(reqpassword, rows[0]["password"]);
           if (verified) {
-            console.log("login succefull");
-            req.session.userinfo = rows[0].username; //session
+            console.log("login successful");
+            req.session.userinfo = rows[0].email_id; //session
 
-            res.redirect("/dashboard");
+            res.json({ status: true });
           } else {
-            res.send("Incorrect Enrollment number or password");
+            res.json({ status: false });
           }
         }
       } else {
@@ -48,10 +53,10 @@ exports.signup = (req, res) => {
     bcrypt.hash(password, 10, (err, hash) => {
       if (!err) {
         db.query(
-          "SELECT * FROM user WHERE username=" + db.escape(username),
+          "SELECT * FROM user WHERE email_id=" + db.escape(email_id),
           (err, rows) => {
             if (!err) {
-              console.log(rows);
+              //console.log(rows);
               if (rows[0] === undefined) {
                 console.log("unique user");
                 db.query(
@@ -64,17 +69,17 @@ exports.signup = (req, res) => {
                     ")",
                   (err, row) => {
                     if (!err) {
-                      console.log("yo!! welcome to the fam");
-                      res.redirect("/");
+                      console.log("User added");
+                      res.json({ status: true });
                     } else {
                       console.log(err);
                     }
                   }
                 );
               } else {
-                res.send("User Already Exits");
+                res.json({ status: false });
               }
-            } else console.log(err);
+            } else throw err;
           }
         );
       } else {
@@ -82,12 +87,12 @@ exports.signup = (req, res) => {
       }
     });
   } else {
-    res.send("Both passwords not same");
+    res.json({ status: false });
   }
 };
 
 exports.singupview = (req, res) => {
-  res.write("welcome");
+  res.send("hello");
 };
 
 //logout
