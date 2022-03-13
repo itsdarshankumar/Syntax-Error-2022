@@ -73,11 +73,11 @@ export default function Dashboard() {
         >
           <Img3 />
         </button>
-        <button>
-          onclick=
-          {() => {
+        <button
+          onClick={() => {
             logout();
           }}
+        >
           <Img4 />
         </button>
       </div>
